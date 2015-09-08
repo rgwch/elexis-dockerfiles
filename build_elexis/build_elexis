@@ -1,0 +1,18 @@
+#!/bin/bash -v
+containerId=ngiger/build
+xhost -
+host_ip=`docker inspect --format="{{ .Config.Hostname }}" $containerId`
+xhost +local:$host_ip
+export docker_data=/opt/elexis-3/
+echo Will build elexis. Dockerdata lives at $docker_data container $containerId ip is $host_ip
+docker run -ti --rm \
+           -e DISPLAY="$DISPLAY" \
+           -v /tmp/.X11-unix:/tmp/.X11-unix \
+           -v $docker_data:/home/elexis \
+           $containerId \
+           /usr/local/bin/build_inside_container
+
+# replace the last line by /bin/bash to run your one code inside the container
+
+
+

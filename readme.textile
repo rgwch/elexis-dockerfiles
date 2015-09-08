@@ -1,0 +1,27 @@
+h1. Dockerfiles for elexis
+
+Here you find a few dockerfiles which you might find interesting for playing around with docker to simplify the setup for the various elements.
+
+Consult the readme.textile in each subdirectory you are intersted in. Their purpose are
+
+* build_elexis:  Complete environment, which lets you build and run the unit test for elexis-3-core and elexis-3-base
+* elexis_test: Run the elexis-3-core + base with a demoDB, ch.elexis.base.ch.feature and some commonly used
+* jenkins: Run the Jenkins-CI with the same sets of plugins as under https://jenkins.elexis.info/jenkins/
+* mediawiki: Run a mediawiki enviroment (at the moment ahead of the actual wiki.elexis.info)
+* nginx: The nginx server needed for the mediawiki PHP5 with FPM
+* srv.elexis.info: Upcoming, my plans for using docker on srv.elexis.info (after upgrading it to jessie and making it work). A simple docker-compose.yml
+
+h2. Requirement
+
+A running docker installation with a quite recent docker version (I am running 1.6.2 at the moment).
+
+Support for older docker version is no priority for me, but patches to support them would probably considered.
+
+I try to base my dockerfiles on Debian:jessie
+
+h2. Contributing
+
+* Fork the project
+* Commit your changes
+* create a pull request
+

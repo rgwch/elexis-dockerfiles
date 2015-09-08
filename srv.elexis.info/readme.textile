@@ -1,0 +1,30 @@
+h1. Dockerfile for srv.elexis.info
+
+For internal use to maintain the srv.elexis.info.
+
+h2. Useage
+
+h3. Build
+
+To build it run @docker-compose.yml@
+
+h3. Running
+
+To start all services (in detached mode) use @docker-compose up -d@.
+
+The web servers can be accessed like this:
+
+* Jenkins: https://localhost:8088
+* MediaWiki: https://localhost:8080
+
+h3. data-container / requirements
+
+The setup will only work if you have a correct dump from srv.elexis.info accessible at
+
+# /opt/docker-data-containers/wiki/mysql
+# /opt/docker-data-containers/wiki/mysql_config
+# /opt/docker-data-containers/mediawiki/config
+# /opt/docker-data-containers/mediawiki/images
+# /opt/docker-data-containers/nginx/certs
+# /opt/docker-data-containers/jenkins
+

@@ -1,0 +1,16 @@
+#!/usr/bin/env ruby
+
+/usr/local/bin/director/director \
+  -destination /opt/elexis \
+  -repository http://download.elexis.info/elexis.3.core/snapshot/ \
+  -repository http://download.elexis.info/elexis.3.base/snapshot/ \
+  -application org.eclipse.equinox.p2.director \
+  -installIU ch.elexis.base.ch.feature.feature.group \
+  -installIU org.iatrix.feature.feature.group \
+  -installIU ch.elexis.omnivore.feature.feature.group \
+  -installIU ch.elexis.base.ch.legacy.feature.feature.group \
+  -installIU com.hilotec.elexis.opendocument.feature.feature.group \
+  -installIU com.hilotec.elexis.kgview.feature.feature.group \
+  -installIU com.hilotec.elexis.messwerte.v2.feature.feature.group \
+  -installIU ch.elexis.agenda.feature.feature.group \
+  -installIU ch.medelexis.text.templator.feature.feature.group

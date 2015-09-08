@@ -1,0 +1,21 @@
+h1. Dockerfile to build elexis
+
+Build Elexis 3.1.snapshot in a Docker container on a linux host
+
+We need a X-environment (provided by Xvfb) to run the tests during the build.
+
+h2. Requirements
+
+* Docker 1.6+
+* An X11 socket
+
+h2. to build
+
+We need to mount a host directory, eg. /opt/elexis-3, which we will share between the host and the container.
+
+Run @./build_elexis@ to run start the docker and build elexis inside (via the script assets/build_inside_container, which was copied to /usr/local/bin/build_inside_container during docker build).
+
+I have no idea whether this script works under MacOSX (boot2docker) or Windows.
+
+
+

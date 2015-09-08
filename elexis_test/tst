@@ -1,0 +1,31 @@
+#!/bin/bash
+if [ -d director ]
+then
+  echo "director schon installiert"
+else
+  echo "director muss installiert werden"
+  MIRROR=ftp.fau.de/eclipse
+  # http://ftp.fau.de/eclipse/tools/buckminster/products/director_latest.zip
+  wget http://$MIRROR/tools/buckminster/products/director_latest.zip
+  unzip director_latest.zip
+fi
+
+director/director  \
+-destination demo \
+-profile Elexis \
+-repository http://download.elexis.info/elexis.3.core/snapshot/ \
+-repository http://download.elexis.info/elexis.3.base/snapshot/ \
+-application ch.elexis.core.application.ElexisApp \
+-tag AutomatedInstall \
+-profileProperties org.eclipse.update.install.features=true  \
+-p2.os linux -p2.ws gtk -p2.arch x86_64 \
+-roaming \
+-installIUs ch.elexis.core.application \
+-i ch.elexis.base.ch.feature.feature.group \
+-i org.iatrix.feature.feature.group \
+-i ch.elexis.omnivore.feature.feature.group \
+-i ch.elexis.base.ch.legacy.feature.feature.group \
+-i com.hilotec.elexis.opendocument.feature.feature.group \
+-i com.hilotec.elexis.kgview.feature.feature.group \
+-i com.hilotec.elexis.messwerte.v2.feature.feature.group \
+-i ch.elexis.agenda.feature.feature.group

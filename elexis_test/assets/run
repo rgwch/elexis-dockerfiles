@@ -1,0 +1,12 @@
+#!/bin/bash
+# set -e
+df -hT
+cd $HOME/elexis
+if [ test -d demoDB ]
+then
+  echo demoDB schon vorhanden
+else
+  rm -rf demoDB
+  echo Skipping unzip /opt/elexis/demoDB.zip
+fi
+exec /opt/elexis/Elexis3 -clean -vmargs -Dch.elexis.dbUser=elexis -Dch.elexis.dbPw=elexisTest -Dosgi.configuration.area=$HOME/elexis/configuration-3-test
