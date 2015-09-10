@@ -51,6 +51,9 @@ RUN /usr/local/bin/director/director \
 
 ADD assets/run /usr/local/bin/elexis-3
 
+# install support for all languages
+RUN apt-get install -y locales-all
+
 # cleanup (minimizes size of generated image)
 RUN apt-get clean && \
     rm -rf /var/lib/apt/lists/* && \

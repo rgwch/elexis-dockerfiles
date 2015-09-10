@@ -14,6 +14,7 @@ h2. Requirements
 
 * Docker 1.6+ (should work fine on 1.0+ but I haven't tried)
 * An X11 socket
+* A user elexis with UID/GID 1300. If you don't have it, adapt the Dockerfile to your needs
 
 Tested under Linux (Debian/Jessie) and MacOSX (see ../readme.textile).
 
