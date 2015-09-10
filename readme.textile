@@ -19,6 +19,36 @@ Support for older docker version is no priority for me, but patches to support t
 
 I try to base my dockerfiles on Debian:jessie
 
+h3. Running under MacOSX
+
+Searching around in the web I found via "Tim Sutton":http://kartoza.com/how-to-run-a-linux-gui-application-on-osx-using-docker/ and "Jan":http://learning-continuous-deployment.github.io/docker/images/dockerfile/2015/04/22/docker-gui-osx/ that you can run a tradition Linux X base application given:
+
+* brew install socat
+* install XQuartz
+* @open -a XQuartz@
+* @socat TCP-LISTEN:6000,reuseaddr,fork UNIX-CLIENT:\"$DISPLAY\"@
+* Change the @-e DISPLAY@ option of docker run used in the host scripts, e.g. build_elexis/build_elexis, to @-e DISPLAY=<your-host-ip-address>:0@
+* You can only use directories starting /Users as docker data containers
+
+Tested with build_elexis on MacOSX 10.9 (at least 10.8 is required)
+
+h3. Remove dangling docker files
+
+Docker can consume a lot of space on your disk. Here some hints how you can clean it up
+
+
+* http://blog.yohanliyanage.com/2015/05/docker-clean-up-after-yourself/
+
+Recommend adding an /etc/cron.daily/docker_cleanup having the following content. Code lives at https://github.com/chadoe/docker-cleanup-volumes
+
+bc. #!/bin/bash
+# Source from http://blog.yohanliyanage.com/2015/05/docker-clean-up-after-yourself/
+du -sh /var/lib/docker/
+docker rm -v $(docker ps -a -q -f status=exited)
+docker rmi $(docker images -f "dangling=true" -q)
+docker run -v /var/run/docker.sock:/var/run/docker.sock -v /var/lib/docker:/var/lib/docker --rm martin/docker-cleanup-volumes
+du -sh /var/lib/docker/
+
 h2. Contributing
 
 * Fork the project

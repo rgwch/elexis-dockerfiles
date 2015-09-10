@@ -6,16 +6,23 @@ We need a X-environment (provided by Xvfb) to run the tests during the build.
 
 h2. Requirements
 
-* Docker 1.6+
-* An X11 socket
+* Docker 1.6+. To install it look at http://docs.docker.com/installation/
 
-h2. to build
+h3. building the container
 
-We need to mount a host directory, eg. /opt/elexis-3, which we will share between the host and the container.
+* @docker build -t $USER/build_elexis .@
 
-Run @./build_elexis@ to run start the docker and build elexis inside (via the script assets/build_inside_container, which was copied to /usr/local/bin/build_inside_container during docker build).
+It will not produce a P2 site for the elexis-3-cor on the first run, as I don't know yet to avoid the complaint about the missing depencies. On the second run it should pass.
 
-I have no idea whether this script works under MacOSX (boot2docker) or Windows.
+h3. build elexis inside the container
 
+The script @./build_elexis@ runs the build script via the following steps
 
+* @mkdir -p $HOME/build_elexis@ # Creates a directory which is used a docker data container and is shared between the host and the container(as /home/elexis)
+* @xhost -@ # To ensure that XQuartz is started on MacOSX and to set later on the permission for X
+* Calls @docker run@
+** Runs /usr/local/bin/build_inside_container. This script was copied during the build from assets/build_inside_container.
 
+Tested under Linux (Debian/Jessie) and MacOSX (see ../readme.textile).
+
+I have no idea whether this script works under Windows.

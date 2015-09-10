@@ -1,9 +1,9 @@
-#!/bin/bash
-# set -e
+#!/bin/bash -v
+# Stop on error
+set -e
 # Don't know why this is necessary!
-export MAVEN_OPTS=/home/elexis/.m2
+mkdir -p $HOME/.m2
 build_root=/home/elexis
-mkdir -p $build_root
 cd $build_root
 if [ -d "$build_root/elexis-3-core" ]
 then
@@ -12,7 +12,8 @@ else
   git clone https://github.com/elexis/elexis-3-core
 fi
 cd elexis-3-core
-mvn clean install -Dmaven.test.skip=true
+# Add -Dmaven.test.skip=true if you have problems running the tests, eg. no X display
+mvn clean install
 cd $build_root
 if [ -d "$build_root/elexis-3-base" ]
 then
@@ -21,5 +22,7 @@ else
   git clone https://github.com/elexis/elexis-3-base
 fi
 cd elexis-3-base
+# Add -Dmaven.test.skip=true if you have problems running the tests, eg. no X display
+# Currently ch.elexis.base.ch.arzttarife.test is broken
 mvn clean install -Dmaven.test.skip=true
 
