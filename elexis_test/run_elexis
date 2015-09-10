@@ -1,4 +1,6 @@
 #!/bin/bash -v
+# stop on any error
+set -e
 containerId=$USER/elexis_test
 xhost -
 host_ip=`docker inspect --format="{{ .Config.Hostname }}" $containerId`
@@ -11,6 +13,8 @@ docker run -ti --rm \
            -e DISPLAY="$DISPLAY" \
            -v /tmp/.X11-unix:/tmp/.X11-unix \
            -v $docker_data:/home/elexis \
-           -u elexis $containerId
+           --user=elexis \
+           $containerId \
+           /usr/local/bin/elexis-3
 
 # replace the last line by /bin/bash to run your scripts/app inside the container

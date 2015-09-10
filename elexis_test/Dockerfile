@@ -49,26 +49,32 @@ RUN /usr/local/bin/director/director \
   -installIU ch.elexis.agenda.feature.feature.group \
   -installIU ch.medelexis.text.templator.feature.feature.group
 
-# Install the run file as elexis
-ADD assets/run /opt/elexis/elexis
-RUN chmod +x /opt/elexis/elexis && \
-    mkdir -p /home/elexis && \
-    echo "elexis:x:1300:1300:Elexis user,,,:/home/elexis:/bin/bash" >> /etc/passwd && \
-    echo "elexis:x:1300:" >> /etc/group && \
-    echo "elexis ALL=(ALL) NOPASSWD: ALL" > /etc/sudoers.d/elexis && \
-    chmod 0440 /etc/sudoers.d/elexis && \
-    chown elexis:elexis -R /home/elexis && \
-    chown root:root /usr/bin/sudo && chmod 4755 /usr/bin/sudo
+ADD assets/run /usr/local/bin/elexis-3
 
 # cleanup (minimizes size of generated image)
 RUN apt-get clean && \
     rm -rf /var/lib/apt/lists/* && \
     rm -rf /tmp/*
 
+# As Eclipse/Java defines .user.home as /root even when the $HOME environment is /home/elexis
+# we need a symbolic link to allow Elexis to work correctly
+# RUN ln -s /home/elexis/elexis /root
 
-CMD /opt/elexis/elexis
-# CMD /bin/bash
+RUN chmod +x /usr/local/bin/elexis-3
+# If you want to use a different user ID for elexis, uncomment and adapt the following lines
+RUN chmod +x /usr/local/bin/elexis-3 && \
+     mkdir -p /home/elexis && \
+     echo "elexis:x:1300:1300:Elexis user,,,:/home/elexis:/bin/bash" >> /etc/passwd && \
+     echo "elexis:x:1300:" >> /etc/group && \
+     echo "elexis ALL=(ALL) NOPASSWD: ALL" > /etc/sudoers.d/elexis && \
+     chmod 0440 /etc/sudoers.d/elexis && \
+     chown elexis:elexis -R /home/elexis && \
+     chown root:root /usr/bin/sudo && chmod 4755 /usr/bin/sudo
 USER elexis
+
+
+CMD /usr/local/bin/elexis-3
+# CMD /bin/bash
 ENV HOME /home/elexis
 WORKDIR /home/elexis
 

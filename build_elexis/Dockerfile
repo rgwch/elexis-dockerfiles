@@ -19,6 +19,8 @@ RUN apt-get install -y xvfb xterm
 #     rm -rf /tmp/*
 
 # The next step is needed or maven would save the all downloaded plugins under /root/.m2 (the home specified via /etc/passd)
+# Reason: java defines .user.home as /root even when the $HOME environment is /home/elexis
+# we need a symbolic link to allow Elexis to work correctly
 RUN ln -s /home/elexis/.m2 /root
 COPY assets/build_inside_container /usr/local/bin/build_inside_container
 CMD /bin/bash
