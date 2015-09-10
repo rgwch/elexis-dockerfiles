@@ -2,9 +2,12 @@
 # stop on any error
 set -e
 containerId=$USER/elexis_test
-xhost -
 host_ip=`docker inspect --format="{{ .Config.Hostname }}" $containerId`
-xhost +local:$host_ip
+if [ `which xhost` ]
+then
+  xhost -
+  xhost +local:$host_ip
+fi
 export docker_data=$HOME/elexis_test
 mkdir -p $docker_data/elexis/logs
 mkdir -p $docker_data/.eclipse

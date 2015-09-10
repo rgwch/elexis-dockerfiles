@@ -5,9 +5,12 @@ export docker_data=$HOME/build_elexis
 mkdir -p $docker_data
 # For MacOSX: uncomment the next line and adapt it to your host's IP adress
 # export DISPLAY=172.25.1.71:0
-xhost -
 host_ip=`docker inspect --format="{{ .Config.Hostname }}" $containerId`
-xhost +local:$host_ip
+if [ `which xhost` ]
+then
+  xhost -
+  xhost +local:$host_ip
+fi
 echo Will build elexis. Dockerdata lives at $docker_data container $containerId ip is $host_ip using display $DISPLAY
 docker run -ti --rm \
            -e DISPLAY="$DISPLAY" \
