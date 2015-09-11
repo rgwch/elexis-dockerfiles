@@ -13,7 +13,8 @@ else
 fi
 cd elexis-3-core
 # Add -Dmaven.test.skip=true if you have problems running the tests, eg. no X display
-mvn clean install
+echo mvn clean install  $MAVEN_OPTS_ELEXIS_3_CORE
+mvn clean install  $MAVEN_OPTS_ELEXIS_3_CORE
 cd $build_root
 if [ -d "$build_root/elexis-3-base" ]
 then
@@ -24,5 +25,5 @@ fi
 cd elexis-3-base
 # Add -Dmaven.test.skip=true if you have problems running the tests, eg. no X display
 # Currently ch.elexis.base.ch.arzttarife.test is broken
-mvn clean install -Dmaven.test.skip=true
+mvn clean install  $MAVEN_OPTS_ELEXIS_3_BASE
 

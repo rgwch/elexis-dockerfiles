@@ -12,8 +12,6 @@ h3. building the container
 
 * @docker build -t $USER/build_elexis .@
 
-It will not produce a P2 site for the elexis-3-cor on the first run, as I don't know yet to avoid the complaint about the missing depencies. On the second run it should pass.
-
 h3. build elexis inside the container
 
 The script @./build_elexis@ runs the build script via the following steps
@@ -22,6 +20,10 @@ The script @./build_elexis@ runs the build script via the following steps
 * @xhost -@ # To ensure that XQuartz is started on MacOSX and to set later on the permission for X
 * Calls @docker run@
 ** Runs /usr/local/bin/build_inside_container. This script was copied during the build from assets/build_inside_container.
+
+If you want to pass additional parameters to the builds for elexis-3-core or base you may do this via the environment variables MAVEN_OPTS_ELEXIS_3_CORE and MAVEN_OPTS_ELEXIS_3_BASE.
+
+E.g. to build for all architectures run (assuming a bash shell) @MAVEN_OPTS_ELEXIS_3_CORE=-Pall-archs ./build_elexis@. Most options are documented under https://github.com/elexis/elexis-3-core/tree/master/ch.elexis.core.releng.
 
 Tested under Linux (Debian/Jessie) and MacOSX (see ../readme.textile).
 
