@@ -1,5 +1,6 @@
 #!/bin/bash -v
 set -e
+env
 containerId=$USER/build_elexis
 export docker_data=$HOME/build_elexis
 mkdir -p $docker_data
@@ -11,8 +12,17 @@ then
   xhost -
   xhost +local:$host_ip
 fi
+added_opts=""
+if [ ! -z $MAVEN_OPTS_ELEXIS_3_CORE ]
+then
+  added_opts="-e MAVEN_OPTS_ELEXIS_3_CORE=$MAVEN_OPTS_ELEXIS_3_CORE"
+fi
+if [ ! -z $MAVEN_OPTS_ELEXIS_3_BASE ]
+then
+  added_opts="$added_opts -e MAVEN_OPTS_ELEXIS_3_BASE=$MAVEN_OPTS_ELEXIS_3_BASE"
+fi
 echo Will build elexis. Dockerdata lives at $docker_data container $containerId ip is $host_ip using display $DISPLAY
-docker run -ti --rm \
+docker run -ti --rm $added_opts \
            -e DISPLAY="$DISPLAY" \
            -v /tmp/.X11-unix:/tmp/.X11-unix \
            -v $docker_data:/home/elexis \
