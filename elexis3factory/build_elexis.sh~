@@ -1,0 +1,5 @@
+#! /bin/bash
+cd /opt/elexisfactory/elexis-3-core
+git pull
+mvn clean install -Dmaven.test.skip=true
+

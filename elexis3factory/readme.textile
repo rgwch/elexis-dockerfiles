@@ -1,0 +1,4 @@
+Usage: 
+
+sudo docker run -v /path/to/elexis/sources:/opt/elexisfactory rgwch/elexis-builder
+
