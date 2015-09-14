@@ -1,8 +1,8 @@
-Simple factory for elexis-3-core
+### Simple factory for elexis-3-core
 
 Usage: 
 
-`sudo docker run -v /path/to/elexis/sources:/opt/elexisfactory rgwch/elexisfactory`
+    sudo docker run -v /path/to/elexis/sources:/opt/elexisfactory rgwch/elexisfactory
 
 where /path/to/elexis/sources ist a directory on the host, where the elexis-3-core repository is or can be lconed into.
 
