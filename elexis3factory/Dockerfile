@@ -1,4 +1,4 @@
-FROM lburgazzoli/debian-jessie-java:1,8,0_60
+FROM lburgazzoli/debian-jessie-java:1.8.0_60
 MAINTAINER weirich@elexis.ch
 RUN apt-get update 
 RUN apt-get install maven
