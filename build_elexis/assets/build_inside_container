@@ -17,8 +17,8 @@ else
 fi
 cd elexis-3-core
 # Add -Dmaven.test.skip=true if you have problems running the tests, eg. no X display
-echo mvn clean install  $MAVEN_OPTS_ELEXIS_3_CORE -Dmaven.test.skip=true
-mvn clean install  $MAVEN_OPTS_ELEXIS_3_CORE -Dmaven.test.skip=true
+echo mvn clean install  $MAVEN_OPTS_ELEXIS_3_CORE
+mvn clean install  $MAVEN_OPTS_ELEXIS_3_CORE 
 cd $build_root
 if [ -d "$build_root/elexis-3-base" ]
 then
