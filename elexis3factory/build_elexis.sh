@@ -12,5 +12,6 @@ else
 fi
 cd /opt/elexisfactory/elexis-3-core
 git pull
-mvn clean install -Dmaven.test.skip=true
-
+mvn clean install -Dmaven.test.skip=true -Pall-archs
+mkdir /opt/elexisfactory/dist
+cp -r /opt/elexisfactory/elexis-3-core/ch.elexis.core.p2site/target/products/* /opt/elexisfactory/dist
