@@ -1,6 +1,8 @@
 ### Simple factory for elexis-3-core and elexis-3-base
 
-Usage: 
+Usage:
+
+(The docker image is on dockerhub, so no need to build it yourself.)
 
     sudo docker run -v /path/to/elexis/sources:/opt/elexisfactory rgwch/elexisfactory
 
