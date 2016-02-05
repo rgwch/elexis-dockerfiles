@@ -1,6 +1,7 @@
 #! /bin/bash
 ######### Elexis Core
 cd /opt/elexisfactory
+rm -rf dist
 if [ -d "/opt/elexisfactory/elexis-3-core" ]
 then
   echo "pull elexis-3-core"
@@ -30,3 +31,4 @@ else
 fi
 cd /opt/elexisfactory/elexis-3-base
 mvn clean install -Dmaven.test.skip=true
+cp -r /opt/elexisfactory/elexis-3-base/ch.elexis.base.p2site/target/repository/* /opt/elexisfactory/dist/p2site
