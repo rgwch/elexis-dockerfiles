@@ -1,6 +1,8 @@
 ### Simple factory for elexis-3-core and elexis-3-base
 
-Usage: 
+Usage:
+
+(The docker image is on dockerhub, so no need to build it yourself.)
 
     sudo docker run -v /path/to/elexis/sources:/opt/elexisfactory rgwch/elexisfactory
 
@@ -32,11 +34,11 @@ To persist a container with preloaded repositories into a new docker image, try 
     
     
 where 'thirsty_brown' is the name of the container as found with `docker ps -a`.
-One can create a new container frum such an image with:
+One can create a new container from such an image with:
 
    sudo docker run -v /path/to/sources:/opt/elexisfactory rgwch/elexisfactory:1.1.0 
   
-Much the same way than with reusing a container, maven repositories are preloaded in this image, thus speeding up the compile process.
+Much the same way than with reusing a container, maven repositories are preloaded in this image, thus speeding up the compile process. The downside is, that such an image is much larger than the pristine elexisfactory.
 
 
 ### Using a different upstream repository
